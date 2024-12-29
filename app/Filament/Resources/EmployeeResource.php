@@ -23,6 +23,10 @@ class EmployeeResource extends Resource
     {
         return $form
             ->schema([
+                
+                Forms\Components\TextInput::make('birthday')
+                ->mask('99/99/9999')
+                ->placeholder('MM/DD/YYYY'),
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
