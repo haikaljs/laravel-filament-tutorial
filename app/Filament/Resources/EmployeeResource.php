@@ -24,9 +24,6 @@ class EmployeeResource extends Resource
         return $form
             ->schema([
                 
-                Forms\Components\TextInput::make('birthday')
-                ->mask('99/99/9999')
-                ->placeholder('MM/DD/YYYY'),
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
@@ -40,17 +37,34 @@ class EmployeeResource extends Resource
                     ->maxLength(255),
                 Forms\Components\DatePicker::make('date_of_birth')
                     ->required(),
-                Forms\Components\TextInput::make('gender')
+                Forms\Components\Select::make('gender')
+                    ->options([
+                        'male' => 'Male',
+                        'female' => 'Female',
+                    ])
                     ->required(),
                 Forms\Components\TextInput::make('ic')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('position')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('department')
-                    ->required()
-                    ->maxLength(255),
+                Forms\Components\Select::make('position')
+                    ->options([
+                        'manager' => 'Manager',
+                        'developer' => 'Developer',
+                        'designer' => 'Designer',
+                        'marketing' => 'Marketing'
+                    ])
+                    ->searchable()
+                    ->required(),
+                Forms\Components\Select::make('department')
+                    ->options([
+                        'hr' => 'Hr',
+                        'it' => 'IT',
+                        'finance' => 'Finance',
+                        'marketing' => 'Marketing',
+                        'operations' => 'Operations',
+                    ])
+                    ->searchable()
+                    ->required(),
                 Forms\Components\Toggle::make('is_active')
                     ->required(),
                 Forms\Components\Textarea::make('address')
